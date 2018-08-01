@@ -41,7 +41,7 @@ class ApplicationController < Sinatra::Base
 
 	get "/success" do
 		if logged_in?
-		  session[:user_id]
+		  @user
 			erb :success
     end
 	end
