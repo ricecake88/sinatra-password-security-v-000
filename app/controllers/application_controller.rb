@@ -17,9 +17,14 @@ class ApplicationController < Sinatra::Base
 	end
 
 	post "/signup" do
-	  params[:username]
-	  params[:password]
-		
+	  @user = User.create(username: params[:username] password_digest: params[:password])
+	  if @user
+	    @user.save
+	    session[:id] = @user.id
+	    redirect '/success'
+	  else
+		  redirect '/signup'
+		end
 	end
 
 	get "/login" do
@@ -27,7 +32,12 @@ class ApplicationController < Sinatra::Base
 	end
 
 	post "/login" do
-		#your code here!
+		@user = User.find(session[:id])
+		if @user
+		  redirect '/success'
+		else
+		  redirect '/failure'
+		end
 	end
 
 	get "/success" do
