@@ -41,7 +41,6 @@ class ApplicationController < Sinatra::Base
 
 	get "/success" do
 		if logged_in?
-		  current_user
 			erb :success
     end
 	end
