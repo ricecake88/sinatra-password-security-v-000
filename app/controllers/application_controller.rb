@@ -55,6 +55,9 @@ class ApplicationController < Sinatra::Base
 		session.clear
 		redirect "/"
 	end
+	
+	post '/logout' do
+	end
 
 	helpers do
 		def logged_in?
